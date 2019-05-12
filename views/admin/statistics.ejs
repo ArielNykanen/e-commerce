@@ -1,0 +1,106 @@
+<%- include('../includes/head.ejs') %>
+<link rel="stylesheet" href="/css/product.css">
+</head>
+
+<body>
+  <%- include('../includes/navigation.ejs') %>
+
+  <main>
+<div align=center>
+  <h1>Shop Statistics</h1>
+</div>
+    <div class="row">
+     
+      <div class="col-4">
+        <h4>Top Products by sales</h4>
+        <table class="table">
+          <thead class="thead-dark">
+            <tr>
+              <th scope="col">#</th>
+              <th scope="col">Product Name</th>
+              <th scope="col">Total Of Sales</th>
+            </tr>
+          </thead>
+          <tbody>
+                      <% if (topProducts.length > 0) { 
+                                  for (let [index, prod] of topProducts.entries()) {
+                                  %>
+                                  <tr>
+                                    <th scope="row"><%= index+1 %></th>
+                                    <td><%= prod.productName %></td>
+                                    <td><%= prod.amountOfSales %></td>
+                                  </tr>
+                      <% 
+                            } 
+                            } else {
+                            %>
+                            No details for this month found.
+                            <% } %>
+           
+          </tbody>
+        </table>
+      </div>
+          <div class="col-4">
+            <h4>Top Customers by Number Of Orders</h4>
+            <table class="table">
+              <thead class="thead-dark">
+                <tr>
+                  <th scope="col">#</th>
+                  <th scope="col">Customer Name</th>
+                  <th scope="col">Total Of Orders</th>
+                </tr>
+              </thead>
+              <tbody>
+                <% if (topUsersByOrders.length > 0) { 
+                                            for (let [index, user] of topUsersByOrders.entries()) {
+                                            %>
+                <tr>
+                  <th scope="row"><%= index+1 %></th>
+                  <td><%= user.userName %></td>
+                  <td><%= user.orders %></td>
+                </tr>
+                <% 
+                                      } 
+                                      } else {
+                                      %>
+                No details for this month found.
+                <% } %>
+          
+              </tbody>
+            </table>
+          </div>
+    <div class="col-4">
+      <h4>Top Customers by Number Of Orders</h4>
+      <table class="table">
+        <thead class="thead-dark">
+          <tr>
+            <th scope="col">#</th>
+            <th scope="col">Customer Name</th>
+            <th scope="col">Total Of Orders</th>
+          </tr>
+        </thead>
+        <tbody>
+          <% if (topUsersByTotalSumOfOrders.length > 0) { 
+                                                for (let [index, user] of topUsersByTotalSumOfOrders.entries()) {
+                                                %>
+          <tr>
+            <th scope="row"><%= index+1 %></th>
+            <td><%= user.userName %></td>
+            <td><%= user.totalOfOrders %></td>
+          </tr>
+          <% 
+                                          } 
+                                          } else {
+                                          %>
+          No details for this month found.
+          <% } %>
+    
+        </tbody>
+      </table>
+    </div>
+    <div class="col-12">
+      <h4>The avg of sales for the selected month is (<%= avgTotal %>)</h4>
+    </div>
+    </div>
+  </main>
+  <%- include('../includes/end.ejs') %>
